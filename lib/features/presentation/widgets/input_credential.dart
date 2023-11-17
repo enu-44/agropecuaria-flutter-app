@@ -16,6 +16,7 @@ class InputCredential extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final TextInputType? inputType;
   final IconData? icons;
+  final int? maxLines;
 
   const InputCredential({ 
     Key? key, 
@@ -29,7 +30,8 @@ class InputCredential extends StatefulWidget {
     this.validator,
     this.onFieldSubmitted,
     this.inputType,
-    this.icons,
+    this.icons, 
+    this.maxLines,
     }) : super(key: key);
 
   @override
@@ -50,7 +52,7 @@ class _InputCredentialState extends State<InputCredential> {
       ),
       child: TextFormField(
         style: TextStyle(color: Colors.black),
-        cursorColor: Palette.kSecondaryColor,
+        cursorColor: Palette.kTextColor,
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,
@@ -58,14 +60,15 @@ class _InputCredentialState extends State<InputCredential> {
         onSaved: widget.onSaved,
         validator: widget.validator,
         onFieldSubmitted: widget.onFieldSubmitted,
+        maxLines: widget.maxLines,
         decoration: InputDecoration(
           labelStyle: TextStyle(
-            color: Palette.kSecondaryColor
+            color: Palette.kTextColor
           ),
           labelText: widget.labelText,
           border: InputBorder.none,
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: Palette.kSecondaryColor),
+          hintStyle: TextStyle(color: Palette.kTextColor),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           suffixIcon: GestureDetector(
             onTap: () {
@@ -75,7 +78,7 @@ class _InputCredentialState extends State<InputCredential> {
             },
             child:
             widget.isPasswordField==true? 
-            Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: _obscureText == false ? Colors.black : Palette.kSecondaryColor,) 
+            Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: _obscureText == false ? Colors.black : Palette.kTextColor,) 
             : Icon(widget.icons)
             // CustomSurffixIcon(svgIcon: widget.iconString != null  ? icon.toString() : ''),
           ),

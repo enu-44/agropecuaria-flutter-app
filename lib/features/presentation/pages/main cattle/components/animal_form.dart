@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:agropecuariosapp/features/presentation/widgets/default_button.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/form_error.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/input_credential.dart';
 import 'package:agropecuariosapp/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AnimalForm extends StatefulWidget {
   const AnimalForm({super.key});
@@ -23,6 +26,9 @@ class _AnimalFormState extends State<AnimalForm> {
   String _selectedSexStatus = 'MACHO';
   String _selectedRaceStatus = 'Bovino';
   final List<String?> errors = [];
+  File? _image;
+
+  final ImagePicker _picker = ImagePicker();
 
   void addError({String? error}) {
     if (!errors.contains(error))
@@ -38,11 +44,46 @@ class _AnimalFormState extends State<AnimalForm> {
       });
   }
 
+  Future<void> _getImageFromCamera() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      }
+    });
+  }
+
+  ImageProvider getImage(File? image) {
+    if(image !=null){
+       return FileImage(image);
+    }
+    return const AssetImage('assets/splash/splash1.png');
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     return Form(
         key: _formKey,
         child: Column(children: <Widget>[
+          Container(
+              width: 150, 
+              height: 150,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: getImage(_image),
+                ),
+              ),
+            ),
+          SizedBox(height: getProportionateScreenHeight(5)),
+          ElevatedButton(
+            onPressed: _getImageFromCamera,
+            child: Text('Subir Foto'),
+          ),
+          SizedBox(height: getProportionateScreenHeight(5)),
           InputCredential(
             controller: _nameController,
             hintText: "Ingresar Nombre",

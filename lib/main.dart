@@ -1,3 +1,6 @@
+import 'package:agropecuariosapp/features/data/datasources/hive/config/datasource_hive_instance.dart';
+import 'package:agropecuariosapp/features/data/datasources/hive/constant/hive_box_const.dart';
+import 'package:agropecuariosapp/features/data/datasources/hive/entities/animal_type_hive.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/task/create/create_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/task/delete/delete_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/task/edit/edit_cubit.dart';
@@ -12,8 +15,8 @@ import 'package:agropecuariosapp/on_generate_route.dart';
 import 'package:agropecuariosapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'injection_container.dart' as di;
-
 
 Future main() async {
   // await dotenv.load(fileName: "assets/.env", mergeWith: {
@@ -21,6 +24,9 @@ Future main() async {
   // });
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
+  await DataSourceHiveInstance.initDbHive();
+  final data = Hive.box<AnimalTypeEntityHive>(HiveBoxConst.kAnimalTypeBoxName);
+  print('DATA: ${data.values.length}');
   runApp(const MyApp());
 }
 
@@ -31,31 +37,33 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => di.sl<AuthCubit>()..appStarted(context)),
-        BlocProvider(create: (_) => di.sl<CredentialsCubit>()),
-        BlocProvider(create: (_) => di.sl<TaskCreateCubit>()),
-        BlocProvider(create: (_) => di.sl<TaskListCubit>()),
-        BlocProvider(create: (_) => di.sl<TaskEditCubit>()),
-        BlocProvider(create: (_) => di.sl<TaskDeleteCubit>()),
-      ],
-      child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      onGenerateRoute: OnGenerateRoute.route,
-      initialRoute: "/",
-      routes: {
-        "/" : (context) {
-          return BlocBuilder<AuthCubit, AuthState>(builder: ((context, authstate){
-            if (authstate is Authenticated) {
-              return MainScreen(uid: 'sadasdasd15154ewqe');
-            } else {
-              return const HomeScreen();
+        providers: [
+          BlocProvider(create: (_) => di.sl<AuthCubit>()..appStarted(context)),
+          BlocProvider(create: (_) => di.sl<CredentialsCubit>()),
+          BlocProvider(create: (_) => di.sl<TaskCreateCubit>()),
+          BlocProvider(create: (_) => di.sl<TaskListCubit>()),
+          BlocProvider(create: (_) => di.sl<TaskEditCubit>()),
+          BlocProvider(create: (_) => di.sl<TaskDeleteCubit>()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: theme(),
+          onGenerateRoute: OnGenerateRoute.route,
+          initialRoute: "/",
+          routes: {
+            "/": (context) {
+              return BlocBuilder<AuthCubit, AuthState>(
+                builder: ((context, authstate) {
+                  if (authstate is Authenticated) {
+                    return MainScreen(uid: authstate.uid);
+                  } else {
+                    return const SplashWidget();
+                  }
+                }),
+              );
             }
-          }),);
-        }
-      },
-    )
-    );
+          },
+        ));
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
+import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,7 @@ class _SplashWidgetState extends State<SplashWidget> {
       // Navegar a la pantalla principal después de 3 segundos
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const SignInScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     });
   }

@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, body_might_complete_normally_nullable
 
 
+import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
+import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/main_animal_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signUp/signUp_screen.dart';
@@ -23,7 +25,7 @@ class OnGenerateRoute {
         return routeBuilder(TaskScreen(title: 'CREAR TAREA',));
       }
       case PageConst.HomePage: {
-        return routeBuilder(MainScreen(uid: ''));
+        return routeBuilder(HomeScreen());
       }
       // case PageConst.ProfilePage: {
       //   if (args is UserEntity) {
@@ -38,6 +40,13 @@ class OnGenerateRoute {
       case PageConst.Splash: {
         return routeBuilder(SplashWidget());
       }
+      case PageConst.Main: {
+        if (args is String) {
+          return routeBuilder(MainAnimalScreen(title: args));
+        } else {
+          return routeBuilder(NoPageFound());
+        }      
+      }
       default: {
         NoPageFound();
       }
@@ -45,8 +54,8 @@ class OnGenerateRoute {
   }
 }
 
-dynamic routeBuilder(Widget child) {
-  return MaterialPageRoute(builder: (context) => child);
+dynamic routeBuilder(Widget child, {dynamic arguments}) {
+  return MaterialPageRoute(builder: (context) => child, settings: RouteSettings(arguments: arguments));
 }
 
 class NoPageFound extends StatelessWidget {

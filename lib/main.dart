@@ -4,6 +4,7 @@ import 'package:agropecuariosapp/features/presentation/cubit/task/edit/edit_cubi
 import 'package:agropecuariosapp/features/presentation/cubit/task/list/list_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/splash/splash.dart';
@@ -41,16 +42,15 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: theme(),
       onGenerateRoute: OnGenerateRoute.route,
       initialRoute: "/",
       routes: {
         "/" : (context) {
           return BlocBuilder<AuthCubit, AuthState>(builder: ((context, authstate){
             if (authstate is Authenticated) {
-              return MainScreen(uid: authstate.uid);
+              return MainScreen(uid: 'sadasdasd15154ewqe');
             } else {
-              return const SplashWidget();
+              return const HomeScreen();
             }
           }),);
         }

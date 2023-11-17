@@ -4,7 +4,6 @@
 
 import 'package:agropecuariosapp/consts.dart';
 import 'package:agropecuariosapp/features/domain/entities/task/request/task.request.entity.dart';
-import 'package:agropecuariosapp/features/presentation/pages/main/components/list_task.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -68,9 +67,9 @@ class _MainScreenState extends State<MainScreen> {
               }).toList(),
             ),
             SizedBox(height: getProportionateScreenHeight(10)),
-            Expanded(
-              child: ListTask(udi: widget.uid, selectedStatus: _selectedStatus ?? '') 
-            )
+            // Expanded(
+            //   child: ListTask(udi: widget.uid, selectedStatus: _selectedStatus ?? '') 
+            // )
           ],
         ),
       ),

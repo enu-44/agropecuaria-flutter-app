@@ -25,7 +25,7 @@ class AnimalEntityHive extends HiveObject {
   }
 
   @HiveField(0)
-  String accountId;
+  int accountId;
 
   @HiveField(1)
   int animalTypeId;

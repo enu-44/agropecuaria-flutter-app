@@ -43,7 +43,7 @@ class UserRepositoryImpl implements AuthRepository {
 
   @override
   Future<AccountEntity> getSignInActive() async {
-    final String accountId = await AuthUtils.getAuthenticateAccountId();
+    final int accountId = await AuthUtils.getAuthenticateAccountId();
     throw getAccountBox.get(accountId)!.toEntity();
   }
 }

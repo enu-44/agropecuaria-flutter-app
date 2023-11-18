@@ -9,6 +9,6 @@ extension AnimalEntityMapper on AnimalTypeEntity {
 
 extension AnimalEntityHiveMapper on AnimalTypeEntityHive {
   AnimalTypeEntity toEntity() {
-    return AnimalTypeEntity(int.parse(key), name, path);
+    return AnimalTypeEntity(key, name, path);
   }
 }

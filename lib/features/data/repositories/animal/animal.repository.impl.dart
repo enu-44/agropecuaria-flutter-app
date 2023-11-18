@@ -22,7 +22,7 @@ class AnimalRepositoryImpl implements AnimalRepository {
 
   @override
   Future<Result<List<AnimalEntity>, Failure>> listByAccountIdAndAnimalTypeId(
-      String accountId, int animalTypeId) async {
+      int accountId, int animalTypeId) async {
     final List<AnimalEntityHive> result = getAnimalBox.values
         .where(
             (e) => e.accountId == accountId && e.animalTypeId == animalTypeId)

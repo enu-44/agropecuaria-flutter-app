@@ -15,7 +15,7 @@ class CreateAnimalRequestEntity {
       this.characteristics,
       this.photo});
 
-  final String accountId;
+  final int accountId;
   final int animalTypeId;
   final String name;
   final String code;

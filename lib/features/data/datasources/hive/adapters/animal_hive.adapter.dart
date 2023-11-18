@@ -17,7 +17,7 @@ class AnimalHiveAdapter extends TypeAdapter<AnimalEntityHive> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AnimalEntityHive(
-        accountId: fields[0] as String,
+        accountId: fields[0] as int,
         animalTypeId: fields[1] as int,
         name: fields[2] as String,
         code: fields[3] as String,

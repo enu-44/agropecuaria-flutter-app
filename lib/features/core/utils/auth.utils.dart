@@ -22,14 +22,14 @@ class AuthUtils {
     return prefs.getBool(authenticateKey) ?? false;
   }
 
-  static Future<String> getAuthenticateAccountId() async {
+  static Future<int> getAuthenticateAccountId() async {
     final prefs = await SharedPreferences.getInstance();
-    return prefs.getString(authenticateAccountIdKey) ?? "";
+    return prefs.getInt(authenticateAccountIdKey) ?? 0;
   }
 
-  static Future<bool> setIsAuthenticate(String accountId) async {
+  static Future<bool> setIsAuthenticate(int accountId) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(authenticateAccountIdKey, accountId);
+    await prefs.setInt(authenticateAccountIdKey, accountId);
     return prefs.setBool(authenticateKey, true);
   }
 

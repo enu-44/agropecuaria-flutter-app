@@ -15,8 +15,8 @@ class AnimalEntity {
       this.lote,
       this.characteristics,
       this.bytesPhoto});
-  final String id;
-  final String accountId;
+  final int id;
+  final int accountId;
   final int animalTypeId;
   final String name;
   final String code;

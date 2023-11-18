@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:agropecuariosapp/features/data/datasources/hive/constant/hive_typeid_const.dart';
 
 import 'package:hive/hive.dart';
@@ -18,7 +20,7 @@ class AnimalEntityHive extends HiveObject {
       this.earringNumber,
       this.lote,
       this.characteristics,
-      this.photoBase64}) {
+      this.photo}) {
     createdDate = DateTime.now();
   }
 
@@ -26,7 +28,7 @@ class AnimalEntityHive extends HiveObject {
   String accountId;
 
   @HiveField(1)
-  String animalTypeId;
+  int animalTypeId;
 
   @HiveField(2)
   String name;
@@ -56,5 +58,5 @@ class AnimalEntityHive extends HiveObject {
   String? characteristics;
 
   @HiveField(11)
-  String? photoBase64;
+  Uint8List? photo;
 }

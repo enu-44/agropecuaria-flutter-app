@@ -5,6 +5,8 @@ import 'package:agropecuariosapp/features/data/datasources/hive/constant/hive_ty
 import 'package:agropecuariosapp/features/data/datasources/hive/entities/account_hive.dart';
 import 'package:agropecuariosapp/features/data/datasources/hive/entities/animal_hive.dart';
 import 'package:agropecuariosapp/features/data/datasources/hive/entities/animal_type_hive.dart';
+import 'package:agropecuariosapp/features/data/mappers/animal_type.mapper.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -33,6 +35,18 @@ mixin DataSourceHiveInstance {
     if (!Hive.isBoxOpen(HiveBoxConst.kAnimalTypeBoxName)) {
       await Hive.openBox<AnimalTypeEntityHive>(HiveBoxConst.kAnimalTypeBoxName);
     }
+    await septupSeeders();
     return Hive;
+  }
+
+  static Future<void> septupSeeders() async {
+    final getAnimalTypeBox =
+        Hive.box<AnimalTypeEntityHive>(HiveBoxConst.kAnimalTypeBoxName);
+    final Map<int, AnimalTypeEntityHive> mapStates =
+        <int, AnimalTypeEntityHive>{};
+    for (final item in DEFAULT_DATA_ANIMAL_TYPE) {
+      mapStates[item.id] = item.toHive();
+    }
+    await getAnimalTypeBox.putAll(mapStates);
   }
 }

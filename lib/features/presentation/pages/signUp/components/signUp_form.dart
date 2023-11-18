@@ -1,7 +1,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, prefer_const_constructors, avoid_returning_null_for_void
 
 import 'package:agropecuariosapp/consts.dart';
-import 'package:agropecuariosapp/features/domain/entities/user/request/user.entity.dart';
+import 'package:agropecuariosapp/features/domain/entities/auth/request/create_account.entity.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/default_button.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/form_error.dart';
@@ -13,7 +13,7 @@ import '../../../widgets/custom_surfix_icon.dart';
 import '../../../widgets/input_credential.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({ Key? key }) : super(key: key);
+  const SignUpForm({Key? key}) : super(key: key);
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -45,7 +45,7 @@ class _SignUpFormState extends State<SignUpForm> {
         errors.remove(error);
       });
   }
-  
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -63,20 +63,18 @@ class _SignUpFormState extends State<SignUpForm> {
         children: <Widget>[
           // buildEmailFormField(),
           InputCredential(
-            controller: _usernameController,
-            hintText: "Ingresar Nombre Completo",
-            labelText: "Fullname",
-            icons: Icons.person,
-            inputType: TextInputType.name
-          ),
+              controller: _usernameController,
+              hintText: "Ingresar Nombre Completo",
+              labelText: "Fullname",
+              icons: Icons.person,
+              inputType: TextInputType.name),
           SizedBox(height: getProportionateScreenHeight(20)),
           InputCredential(
-            controller: _emailController,
-            hintText: "Ingresar Email",
-            labelText: "Email",
-            icons: Icons.email_outlined,
-            inputType: TextInputType.emailAddress
-          ),
+              controller: _emailController,
+              hintText: "Ingresar Email",
+              labelText: "Email",
+              icons: Icons.email_outlined,
+              inputType: TextInputType.emailAddress),
           SizedBox(height: getProportionateScreenHeight(20)),
           InputCredential(
             controller: _passwordController,
@@ -108,7 +106,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
               ),
               GestureDetector(
-                onTap: (){},
+                onTap: () {},
                 child: Text(
                   "Acepto termino y condiciones",
                   style: TextStyle(decoration: TextDecoration.underline),
@@ -119,33 +117,41 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(10)),
-          _isSigningUp ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Espera un momento", style: TextStyle(color: Palette.backgroundColor, fontSize: 16, fontWeight: FontWeight.w400),),
-              sizeHor(10),
-              CircularProgressIndicator(color: Palette.backgroundColor,)
-            ],
-          ) :
-          DefaultButton(
-            text: "Continue",
-            state: agree,
-            press: () {
-              _signUpUser();
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   // if all are valid then go to success screen
-              //   KeyboardUtil.hideKeyboard(context);
-              //   Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-              // }
-            },
-          ),
+          _isSigningUp
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Espera un momento",
+                      style: TextStyle(
+                          color: Palette.backgroundColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    sizeHor(10),
+                    CircularProgressIndicator(
+                      color: Palette.backgroundColor,
+                    )
+                  ],
+                )
+              : DefaultButton(
+                  text: "Continue",
+                  state: agree,
+                  press: () {
+                    _signUpUser();
+                    // if (_formKey.currentState!.validate()) {
+                    //   _formKey.currentState!.save();
+                    //   // if all are valid then go to success screen
+                    //   KeyboardUtil.hideKeyboard(context);
+                    //   Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                    // }
+                  },
+                ),
         ],
       ),
     );
   }
-  
-  
+
   TextFormField buildConformPassFormField() {
     return TextFormField(
       obscureText: true,
@@ -249,13 +255,14 @@ class _SignUpFormState extends State<SignUpForm> {
     setState(() {
       _isSigningUp = true;
     });
-    BlocProvider.of<CredentialsCubit>(context).signUpUser(
-        user: UserEntity(
-          username: _usernameController.text,
-          email: _emailController.text,
+    BlocProvider.of<CredentialsCubit>(context)
+        .signUpUser(
+            user: CreateAccountEntity(
+          fullName: _usernameController.text,
+          userName: _emailController.text,
           password: _passwordController.text,
-        )
-    ).then((value) => _clear());
+        ))
+        .then((value) => _clear());
   }
 
   _clear() {

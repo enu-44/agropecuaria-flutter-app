@@ -16,7 +16,8 @@ class AnimalTypeHiveAdapter extends TypeAdapter<AnimalTypeEntityHive> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return AnimalTypeEntityHive(name: fields[0] as String);
+    return AnimalTypeEntityHive(
+        name: fields[0] as String, path: fields[1] as String);
   }
 
   @override
@@ -24,7 +25,9 @@ class AnimalTypeHiveAdapter extends TypeAdapter<AnimalTypeEntityHive> {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.name);
+      ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.path);
   }
 
   @override

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class AnimalEntity {
   AnimalEntity(
       {required this.id,
@@ -11,10 +13,11 @@ class AnimalEntity {
       required this.createdDate,
       this.earringNumber,
       this.lote,
-      this.characteristics});
+      this.characteristics,
+      this.bytesPhoto});
   final String id;
   final String accountId;
-  final String animalTypeId;
+  final int animalTypeId;
   final String name;
   final String code;
   final String sexo;
@@ -24,4 +27,5 @@ class AnimalEntity {
   final String? earringNumber;
   final String? lote;
   final String? characteristics;
+  final Uint8List? bytesPhoto;
 }

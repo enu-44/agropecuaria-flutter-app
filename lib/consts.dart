@@ -9,7 +9,8 @@ class Palette {
   static const Color facebookColor = Color(0xFF3B5999);
   static const Color googleColor = Color(0xFFDE4B39);
   static const Color backgroundColor = Color.fromARGB(255, 160, 154, 152);
-  static const Color backgroundColorSecondary = Color.fromARGB(255, 62, 143, 214);
+  static const Color backgroundColorSecondary =
+      Color.fromARGB(255, 62, 143, 214);
   static const kSecondaryColor = Color.fromARGB(255, 242, 242, 242);
   static const kTextColor = Color(0xFF757575);
 }
@@ -18,7 +19,7 @@ class Palette {
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
-class AlertErr{
+class AlertErr {
   static const String kEmailNullError = "Please Enter your email";
   static const String kInvalidEmailError = "Please Enter Valid Email";
   static const String kPassNullError = "Please Enter your password";
@@ -41,7 +42,6 @@ class PageConst {
   static const String LoginPage = "signInScreen";
   static const String RegisterPage = "signUpScreen";
   static const String RoutesPage = "routesScreen";
-  static const String TaskPage = "TaskScreen";
   static const String Main = "MainCattleScreen";
 }
 
@@ -64,7 +64,9 @@ void toast(String message) {
 }
 
 Widget sizeVer(double height) {
-  return SizedBox(height: height,);
+  return SizedBox(
+    height: height,
+  );
 }
 
 Widget sizeHor(double width) {

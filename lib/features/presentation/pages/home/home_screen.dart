@@ -50,11 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
               count: categories[index]['count'],
               imageUrl: categories[index]['imageUrl'],
               onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    PageConst.Main,
-                    arguments: categories[index]['title'],
-                  );
+                Navigator.pushNamed(
+                  context,
+                  PageConst.Main,
+                  arguments: categories[index]['title'],
+                );
               },
             );
           },

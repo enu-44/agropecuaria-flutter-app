@@ -1,21 +1,12 @@
 import 'package:agropecuariosapp/features/data/datasources/hive/config/datasource_hive_instance.dart';
-import 'package:agropecuariosapp/features/data/datasources/hive/constant/hive_box_const.dart';
-import 'package:agropecuariosapp/features/data/datasources/hive/entities/animal_type_hive.dart';
-import 'package:agropecuariosapp/features/presentation/cubit/task/create/create_cubit.dart';
-import 'package:agropecuariosapp/features/presentation/cubit/task/delete/delete_cubit.dart';
-import 'package:agropecuariosapp/features/presentation/cubit/task/edit/edit_cubit.dart';
-import 'package:agropecuariosapp/features/presentation/cubit/task/list/list_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
-import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
-import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/splash/splash.dart';
 import 'package:agropecuariosapp/on_generate_route.dart';
 import 'package:agropecuariosapp/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 import 'injection_container.dart' as di;
 
 Future main() async {
@@ -25,8 +16,6 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   await DataSourceHiveInstance.initDbHive();
-  final data = Hive.box<AnimalTypeEntityHive>(HiveBoxConst.kAnimalTypeBoxName);
-  print('DATA: ${data.values.length}');
   runApp(const MyApp());
 }
 
@@ -39,11 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => di.sl<AuthCubit>()..appStarted(context)),
-          BlocProvider(create: (_) => di.sl<CredentialsCubit>()),
-          BlocProvider(create: (_) => di.sl<TaskCreateCubit>()),
-          BlocProvider(create: (_) => di.sl<TaskListCubit>()),
-          BlocProvider(create: (_) => di.sl<TaskEditCubit>()),
-          BlocProvider(create: (_) => di.sl<TaskDeleteCubit>()),
+          BlocProvider(create: (_) => di.sl<CredentialsCubit>())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -56,7 +41,7 @@ class MyApp extends StatelessWidget {
               return BlocBuilder<AuthCubit, AuthState>(
                 builder: ((context, authstate) {
                   if (authstate is Authenticated) {
-                    return MainScreen(uid: authstate.uid);
+                    return const MainScreen();
                   } else {
                     return const SplashWidget();
                   }

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class UpdateAnimalRequestEntity {
   UpdateAnimalRequestEntity(
       {required this.id,
@@ -10,10 +12,11 @@ class UpdateAnimalRequestEntity {
       required this.color,
       this.earringNumber,
       this.lote,
-      this.characteristics});
+      this.characteristics,
+      this.photo});
   final String id;
   final String accountId;
-  final String animalTypeId;
+  final int animalTypeId;
   final String name;
   final String code;
   final String sexo;
@@ -22,4 +25,5 @@ class UpdateAnimalRequestEntity {
   final String? earringNumber;
   final String? lote;
   final String? characteristics;
+  final Uint8List? photo;
 }

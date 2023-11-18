@@ -1,14 +1,7 @@
-
-
-
-import 'package:agropecuariosapp/features/domain/repositories/user/user.repository.dom.dart';
+import 'package:agropecuariosapp/features/domain/repositories/auth/auth.repository.dom.dart';
 
 class IsSignInUseCase {
-  final UserRepository repository;
-
+  final AuthRepository repository;
   IsSignInUseCase({required this.repository});
-
-  Future<bool> call() {
-    return repository.isSignIn();
-  }
+  Future<bool> call() => repository.isSignIn();
 }

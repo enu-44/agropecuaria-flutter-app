@@ -18,8 +18,8 @@ class AccountHiveAdapter extends TypeAdapter<AccountEntityHive> {
     };
     return AccountEntityHive(
         fullName: fields[0] as String,
-        userName: fields[2] as String,
-        password: fields[3] as String);
+        userName: fields[1] as String,
+        password: fields[2] as String);
   }
 
   @override

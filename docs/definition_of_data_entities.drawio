@@ -1,0 +1,121 @@
+<mxfile host="65bd71144e">
+    <diagram id="TvGOtBbhiH54bsincAxX" name="Page-1">
+        <mxGraphModel dx="749" dy="437" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="29" value="" style="childLayout=tableLayout;recursiveResize=0;shadow=0;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="318" width="380" height="281" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry width="380" height="47" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="ENTIDAD" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="30">
+                    <mxGeometry width="127" height="47" as="geometry">
+                        <mxRectangle width="127" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="32" value="DESCRIPCION" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="30">
+                    <mxGeometry x="127" width="210" height="47" as="geometry">
+                        <mxRectangle width="210" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="33" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="30">
+                    <mxGeometry x="337" width="43" height="47" as="geometry">
+                        <mxRectangle width="43" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="34" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry y="47" width="380" height="46" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Cuenta" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="34">
+                    <mxGeometry width="127" height="46" as="geometry">
+                        <mxRectangle width="127" height="46" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="36" value="Aqui se alamzacenan los datos de las cuentas creadas" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="34">
+                    <mxGeometry x="127" width="210" height="46" as="geometry">
+                        <mxRectangle width="210" height="46" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="34">
+                    <mxGeometry x="337" width="43" height="46" as="geometry">
+                        <mxRectangle width="43" height="46" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry y="93" width="380" height="47" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="TipoAnimal" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="38">
+                    <mxGeometry width="127" height="47" as="geometry">
+                        <mxRectangle width="127" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="40" value="Se almacennan los tipos de ganado tales como (Bovino, Lechero, Ganado de Trabajo, Doble Proposito)" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="38">
+                    <mxGeometry x="127" width="210" height="47" as="geometry">
+                        <mxRectangle width="210" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="38">
+                    <mxGeometry x="337" width="43" height="47" as="geometry">
+                        <mxRectangle width="43" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry y="140" width="380" height="47" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="Sexo" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="42">
+                    <mxGeometry width="127" height="47" as="geometry">
+                        <mxRectangle width="127" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="44" value="Se almacena datos de Sexo de ganado( Hembra o Macho)" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="42">
+                    <mxGeometry x="127" width="210" height="47" as="geometry">
+                        <mxRectangle width="210" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="45" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="42">
+                    <mxGeometry x="337" width="43" height="47" as="geometry">
+                        <mxRectangle width="43" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="63" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry y="187" width="380" height="47" as="geometry"/>
+                </mxCell>
+                <mxCell id="64" value="Raza" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="63">
+                    <mxGeometry width="127" height="47" as="geometry">
+                        <mxRectangle width="127" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="65" value="Almacena todas las razas de ganado" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="63">
+                    <mxGeometry x="127" width="210" height="47" as="geometry">
+                        <mxRectangle width="210" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="66" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="63">
+                    <mxGeometry x="337" width="43" height="47" as="geometry">
+                        <mxRectangle width="43" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="67" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;dropTarget=0;collapsible=0;recursiveResize=0;expand=0;fontStyle=0;fillColor=none;strokeColor=inherit;" vertex="1" parent="29">
+                    <mxGeometry y="234" width="380" height="47" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" value="Animal" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="67">
+                    <mxGeometry width="127" height="47" as="geometry">
+                        <mxRectangle width="127" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="69" value="Almacena cada uno de los animales, con el proposito de alimentar el inventario" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="67">
+                    <mxGeometry x="127" width="210" height="47" as="geometry">
+                        <mxRectangle width="210" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="70" value="" style="connectable=0;recursiveResize=0;strokeColor=inherit;fillColor=none;align=center;whiteSpace=wrap;html=1;" vertex="1" parent="67">
+                    <mxGeometry x="337" width="43" height="47" as="geometry">
+                        <mxRectangle width="43" height="47" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

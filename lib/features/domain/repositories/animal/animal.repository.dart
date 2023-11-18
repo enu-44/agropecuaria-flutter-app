@@ -11,4 +11,7 @@ abstract class AnimalRepository {
   Future<Result<AnimalEntity, Failure>> update(
       UpdateAnimalRequestEntity request);
   Future<int> countByAnimalTypeId(int request);
+  Future<Result<bool, Failure>> deleteById(int id);
+  Future<Result<List<AnimalEntity>, Failure>> searchByAccountIdAndAnimalTypeId(
+      String query, int accountId, int animalTypeId);
 }

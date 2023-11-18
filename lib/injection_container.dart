@@ -5,7 +5,9 @@ import 'package:agropecuariosapp/features/domain/repositories/animal/animal.repo
 import 'package:agropecuariosapp/features/domain/repositories/animal_type/animal_type.repository.dart';
 import 'package:agropecuariosapp/features/domain/repositories/auth/auth.repository.dom.dart';
 import 'package:agropecuariosapp/features/domain/usecases/animal/createAnimal.usecase.dart';
+import 'package:agropecuariosapp/features/domain/usecases/animal/deleteAnimal.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/animal/getAnimals.usecase.dart';
+import 'package:agropecuariosapp/features/domain/usecases/animal/searchAnimal.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/animal/updateAnimals.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/animal_type/getAnimalsTypes.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/isSignIn.usecase.dart';
@@ -37,6 +39,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => CreateAnimalUseCase(repository: sl.call()));
   sl.registerLazySingleton(() => UpdateAnimalUseCase(repository: sl.call()));
   sl.registerLazySingleton(() => GetAnimalsUseCase(
+      animalRepository: sl.call(), authRepository: sl.call()));
+  sl.registerLazySingleton(() => DeleteAnimalUseCase(repository: sl.call()));
+  sl.registerLazySingleton(() => SearchAnimalsUseCase(
       animalRepository: sl.call(), authRepository: sl.call()));
 
   //Animal Type

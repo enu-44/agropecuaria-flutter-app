@@ -40,4 +40,22 @@ class AnimalRepositoryImpl implements AnimalRepository {
   @override
   Future<int> countByAnimalTypeId(int request) async =>
       getAnimalBox.values.where((_) => _.animalTypeId == request).length;
+
+  @override
+  Future<Result<bool, Failure>> deleteById(int id) async {
+    await getAnimalBox.delete(id);
+    return Result.ok(true);
+  }
+
+  @override
+  Future<Result<List<AnimalEntity>, Failure>> searchByAccountIdAndAnimalTypeId(
+      String query, int accountId, int animalTypeId) async {
+    final List<AnimalEntityHive> result = getAnimalBox.values
+        .where((e) =>
+            e.accountId == accountId &&
+            e.animalTypeId == animalTypeId &&
+            (e.name.contains(query) || e.code.contains(query)))
+        .toList();
+    return Result.ok(result.map((e) => e.toEntity()).toList());
+  }
 }

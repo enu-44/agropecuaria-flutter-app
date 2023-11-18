@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, body_might_complete_normally_nullable
 
+import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
 import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
+import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/animal_body_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/main_animal_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
@@ -40,8 +42,8 @@ class OnGenerateRoute {
         }
       case PageConst.Main:
         {
-          if (args is String) {
-            return routeBuilder(MainAnimalScreen(title: args));
+          if (args is AnimalTypeEntity) {
+            return routeBuilder(MainAnimalScreen(data: args));
           } else {
             return routeBuilder(NoPageFound());
           }

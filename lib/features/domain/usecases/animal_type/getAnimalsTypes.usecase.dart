@@ -12,7 +12,7 @@ class GetAnimalsTypesUseCase {
 
   GetAnimalsTypesUseCase(
       {required this.animalRepository, required this.animalTypeRepository});
-  Future<Result<List<AnimalTypeEntity>, Failure>> call(int animalTypeId) async {
+  Future<Result<List<AnimalTypeEntity>, Failure>> call() async {
     final resultTypes = await animalTypeRepository.list();
     if (resultTypes.isError) return Result.error(resultTypes.error!);
     var data = await Stream<AnimalTypeEntity>.fromIterable(resultTypes.value!)

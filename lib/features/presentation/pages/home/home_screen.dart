@@ -1,7 +1,11 @@
 import 'package:agropecuariosapp/consts.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/home/components/card_item.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,28 +15,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> categories = [
-    {'title': 'Bovino', 'count': 10, 'imageUrl': 'assets/splash/splash1.png'},
-    {'title': 'Lechero', 'count': 15, 'imageUrl': 'assets/splash/splash1.png'},
-    {'title': 'Ovino', 'count': 5, 'imageUrl': 'assets/splash/splash1.png'},
-    {'title': 'Caprino', 'count': 20, 'imageUrl': 'assets/splash/splash1.png'},
-    {'title': 'Porcion', 'count': 15, 'imageUrl': 'assets/splash/splash1.png'},
-    {'title': 'Equino', 'count': 6, 'imageUrl': 'assets/splash/splash1.png'},
-    {
-      'title': 'Doble proposito',
-      'count': 4,
-      'imageUrl': 'assets/splash/splash1.png'
-    },
-    {'title': 'Pastoreo', 'count': 6, 'imageUrl': 'assets/splash/splash1.png'},
-  ];
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    _loadAnimalTypes();
+  }
+
+  Future<void> _loadAnimalTypes() async {
+    final cubit = context.read<AnimalsCubit>();
+    await cubit.listTypeAnimals();
+  }
+
+  Widget buildLoadedState(List<AnimalTypeEntity> animalTypes) {
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Tipo de Ganado',
         onLogoutPressed: () {
-          print('funciona');
+          _signOut();
         },
       ),
       body: Padding(
@@ -43,17 +43,17 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisSpacing: 8.0,
             mainAxisSpacing: 8.0,
           ),
-          itemCount: categories.length,
+          itemCount: animalTypes.length,
           itemBuilder: (context, index) {
             return CustomCard(
-              title: categories[index]['title'],
-              count: categories[index]['count'],
-              imageUrl: categories[index]['imageUrl'],
+              title: animalTypes[index].name,
+              count: animalTypes[index].countAnimals,
+              imageUrl: animalTypes[index].path,
               onTap: () {
                 Navigator.pushNamed(
                   context,
                   PageConst.Main,
-                  arguments: categories[index]['title'],
+                  arguments: animalTypes[index],
                 );
               },
             );
@@ -61,5 +61,42 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  Widget buildFailureState() {
+    return const Center(
+      child: Text('Error al cargar los tipos de animales'),
+    );
+  }
+
+  Widget buildLoadingState() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AnimalsCubit, AnimalsState>(
+      builder: (context, state) {
+        if (state is AnimalTypeListLoaded) {
+          return buildLoadedState(state.animalTypes);
+        } else if (state is AnimalFailure) {
+          return buildFailureState();
+        } else {
+          return buildLoadingState();
+        }
+      },
+    );
+  }
+
+  Future<void> _signOut() async {
+    setState(() {
+    });
+    BlocProvider.of<AuthCubit>(context)
+        .loggedOut()
+        .then((value) => {
+          Navigator.pushNamedAndRemoveUntil(context, PageConst.Splash, (route) => false)
+        });
   }
 }

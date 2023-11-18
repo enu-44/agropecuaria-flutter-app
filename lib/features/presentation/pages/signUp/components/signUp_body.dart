@@ -24,15 +24,9 @@ class _SignUpBodyState extends State<SignUpBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: SizeConfig.screenHeight * 0.07),
+                Image.asset('assets/splash/splash1.png', width: 150, height: 150),
                 SizedBox(height: SizeConfig.screenHeight * 0.02),
-                Text(
-                  "Registrate",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: getProportionateScreenWidth(28),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
                 Text(
                   "Crear una cuenta es gratis y puedes compartir tu experiencia",
                   textAlign: TextAlign.center,
@@ -93,7 +87,7 @@ class _SignUpBodyState extends State<SignUpBody> {
             "Inicia sesion",
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(16),
-                color: Palette.backgroundColor),
+                color: Palette.backgroundColorSecondary),
           ),
         ),
       ],

@@ -1,12 +1,17 @@
+import 'package:agropecuariosapp/consts.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/form/animals_form_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/animal_form.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/appbar.dart';
 import 'package:agropecuariosapp/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AnimalBodyScreen extends StatefulWidget {
   final String title;
+  final int animalTypeId;
 
-  const AnimalBodyScreen({super.key, required this.title});
+  const AnimalBodyScreen({super.key, required this.title, required this.animalTypeId});
 
   @override
   State<AnimalBodyScreen> createState() => _AnimalBodyScreenState();
@@ -16,22 +21,29 @@ class _AnimalBodyScreenState extends State<AnimalBodyScreen> {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: widget.title,
-        showBackButton: true,
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: SizeConfig.screenHeight * 0.1),
-                AnimalForm(),
-                SizedBox(height: getProportionateScreenHeight(20)),
-              ],
+    return BlocListener<AnimalsFormCubit, AnimalsFormState>(
+      listener: (context, state) {
+        if(state is AnimalFormSuccess){
+          Navigator.pop(context, true);
+        }
+      },
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title: widget.title,
+          showBackButton: true,
+        ),
+        body: SizedBox(
+          width: double.infinity,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight * 0.1),
+                  AnimalForm(animalTypeId: widget.animalTypeId),
+                  SizedBox(height: getProportionateScreenHeight(20)),
+                ],
+              ),
             ),
           ),
         ),

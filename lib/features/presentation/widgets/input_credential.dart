@@ -31,7 +31,7 @@ class InputCredential extends StatefulWidget {
     this.onFieldSubmitted,
     this.inputType,
     this.icons, 
-    this.maxLines,
+    this.maxLines = 1,
     }) : super(key: key);
 
   @override
@@ -56,11 +56,11 @@ class _InputCredentialState extends State<InputCredential> {
         controller: widget.controller,
         keyboardType: widget.inputType,
         key: widget.fieldKey,
-        obscureText: widget.isPasswordField == true? _obscureText : false,
+        obscureText: widget.isPasswordField == true ? _obscureText : false,
         onSaved: widget.onSaved,
         validator: widget.validator,
         onFieldSubmitted: widget.onFieldSubmitted,
-        maxLines: widget.maxLines,
+        maxLines: widget.maxLines  ?? 1,
         decoration: InputDecoration(
           labelStyle: TextStyle(
             color: Palette.kTextColor
@@ -76,8 +76,7 @@ class _InputCredentialState extends State<InputCredential> {
                 _obscureText = !_obscureText;
               });
             },
-            child:
-            widget.isPasswordField==true? 
+            child:  widget.isPasswordField == true? 
             Icon(_obscureText ? Icons.visibility_off : Icons.visibility, color: _obscureText == false ? Colors.black : Palette.kTextColor,) 
             : Icon(widget.icons)
             // CustomSurffixIcon(svgIcon: widget.iconString != null  ? icon.toString() : ''),

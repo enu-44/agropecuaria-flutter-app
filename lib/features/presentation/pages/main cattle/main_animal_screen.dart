@@ -1,56 +1,37 @@
 import 'package:agropecuariosapp/consts.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal/animal.entity.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/card_animal.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/animal_body_screen.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+
 
 class MainAnimalScreen extends StatefulWidget {
-  final String title;
-  const MainAnimalScreen({super.key, required this.title});
+  final AnimalTypeEntity data;
+  const MainAnimalScreen({super.key,required this.data});
 
   @override
   State<MainAnimalScreen> createState() => _MainAnimalScreenState();
 }
 
 class _MainAnimalScreenState extends State<MainAnimalScreen> {
-  final List<Map<String, dynamic>> cattleList = [
-    {
-      'name': 'Vaca 1',
-      'code': '123',
-      'sex': 'Hembra',
-      'admissionDate': '01/01/2022',
-      'color': 'Negro',
-      'breed': 'Angus',
-      'imageUrl': 'assets/splash/splash1.png',
-    },
-    {
-      'name': 'Vaca 2',
-      'code': '123',
-      'sex': 'Macho',
-      'admissionDate': '01/01/2022',
-      'color': 'Negro',
-      'breed': 'Angus',
-      'imageUrl': 'assets/splash/splash1.png',
-    },
-    {
-      'name': 'Vaca 3',
-      'code': '123',
-      'sex': 'Macho',
-      'admissionDate': '01/01/2022',
-      'color': 'Negro',
-      'breed': 'Angus',
-      'imageUrl': 'assets/splash/splash1.png',
-    },
-  ];
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: widget.title,
-        showBackButton: true,
-      ),
-      body: Column(
+  void initState() {
+    super.initState();
+    _loadAnimals();
+  }
+
+  Future<void> _loadAnimals() async {
+    final cubit = context.read<AnimalsCubit>();
+    await cubit.listAnimalsByType(widget.data.id);
+  }
+  Widget buildLoadedState(List<AnimalEntity> animals) {
+    return Column(
         children: [
           Container(
             padding: const EdgeInsets.all(8.0),
@@ -67,32 +48,66 @@ class _MainAnimalScreenState extends State<MainAnimalScreen> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: cattleList.length,
+              itemCount: animals.length,
               itemBuilder: (context, index) {
                 return AnimalCard(
-                  name: cattleList[index]['name'],
-                  code: cattleList[index]['code'],
-                  sex: cattleList[index]['sex'],
-                  admissionDate: cattleList[index]['admissionDate'],
-                  color: cattleList[index]['color'],
-                  breed: cattleList[index]['breed'],
-                  imageUrl: cattleList[index]['imageUrl'],
+                  name: animals[index].name,
+                  code: animals[index].code,
+                  sex: animals[index].sexo,
+                  admissionDate: animals[index].createdDate,
+                  color: animals[index].color,
+                  breed: animals[index].race,
+                  imageUrl: animals[index].bytesPhoto,
+                  animalTypeId: animals[index].animalTypeId,
                 );
               },
             ),
           ),
         ],
+      );
+  }
+
+  Widget buildFailureState() {
+    return const Center(
+      child: Text('Error al cargar los animales'),
+    );
+  }
+
+  Widget buildLoadingState() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+
+     return Scaffold(
+      appBar: CustomAppBar(
+        title: widget.data.name,
+        showBackButton: true,
+      ),
+      body: BlocBuilder<AnimalsCubit, AnimalsState>(
+        builder: (context, state) {
+          if (state is AnimalListLoaded) {
+            return buildLoadedState(state.animals);
+          } else if (state is AnimalFailure) {
+            return buildFailureState();
+          } else {
+            return buildLoadingState();
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const AnimalBodyScreen(title: 'Registrar Nuevo')),
-          );
+            MaterialPageRoute(builder: (context) => AnimalBodyScreen(title: 'Registrar Nuevo', animalTypeId: widget.data.id)),
+          ).then((value) => value is bool ? _loadAnimals() : null);
         },
         backgroundColor: Palette.backgroundColor,
         child: Icon(Icons.add),
       ),
     );
+
   }
 }

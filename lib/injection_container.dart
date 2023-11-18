@@ -14,6 +14,8 @@ import 'package:agropecuariosapp/features/domain/usecases/user/commands/isSignIn
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/signIn.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/signOut.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/signup.usecase.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/form/animals_form_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -25,7 +27,9 @@ Future<void> init() async {
   // =============================================================================
   sl.registerFactory(() =>
       CredentialsCubit(signUpUseCase: sl.call(), signInUseCase: sl.call()));
-  sl.registerFactory(() => AuthCubit(isSignInUseCase: sl.call()));
+  sl.registerFactory(() => AuthCubit(isSignInUseCase: sl.call(), signOutUseCase: sl.call()));
+  sl.registerFactory(() => AnimalsCubit(getAnimalsTypesUseCase: sl.call(), getAnimalsUseCase: sl.call()));
+  sl.registerFactory(() => AnimalsFormCubit(createAnimalUseCase: sl.call()));
 
   // USE CASE
   // =============================================================================

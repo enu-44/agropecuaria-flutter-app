@@ -1,14 +1,21 @@
 import 'dart:io';
 
+import 'package:agropecuariosapp/features/core/utils/auth.utils.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal/animal.entity.dart';
+import 'package:agropecuariosapp/features/domain/entities/animal/request/create_animal_request.entity.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/form/animals_form_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/default_button.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/form_error.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/input_credential.dart';
 import 'package:agropecuariosapp/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AnimalForm extends StatefulWidget {
-  const AnimalForm({super.key});
+  final AnimalEntity? data;
+  final int animalTypeId;
+  const AnimalForm({super.key, this.data, required this.animalTypeId});
 
   @override
   State<AnimalForm> createState() => _AnimalFormState();
@@ -167,16 +174,48 @@ class _AnimalFormState extends State<AnimalForm> {
           DefaultButton(
             text: "GUARDAR",
             state: true,
-            press: () {
-              print('funciona el boton');
-              // if (widget.task!.id != '') {
-              //   _edit();
-              // }else{
-              //   _save();
-              // }
+            press: () async {
+              final CreateAnimalRequestEntity createEntity = CreateAnimalRequestEntity(
+                accountId: await AuthUtils.getAuthenticateAccountId(), 
+                animalTypeId: widget.animalTypeId, 
+                name: _nameController.text, 
+                code: _codeController.text, 
+                sexo: _selectedSexStatus, 
+                race: _selectedRaceStatus, 
+                color: _colorController.text, 
+                createdDate: DateTime.now(),
+                photo: _image?.readAsBytesSync(),
+                characteristics: _descriptionController.text,
+                lote: _loteController.text,
+                earringNumber: _numberController.text
+              );
+              if (widget.data != null) {
+                print('editar');
+              }else{
+                print(createEntity);
+                _addAnimals(createEntity);
+              }
             },
           ),
           SizedBox(height: SizeConfig.screenHeight * 0.05),
         ]));
+  }
+
+  void _addAnimals(CreateAnimalRequestEntity params) {
+    BlocProvider.of<AnimalsFormCubit>(context).addAnimals(params).then((value) => _clear());
+  }
+
+  _clear() {
+    setState(() {
+      _selectedRaceStatus = 'Bovino';
+      _selectedSexStatus = 'MACHO';
+      _image = null;
+    });
+    _nameController.clear();
+    _codeController.clear();
+    _numberController.clear();
+    _loteController.clear();
+    _colorController.clear();
+    _descriptionController.clear();
   }
 }

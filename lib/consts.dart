@@ -8,7 +8,7 @@ class Palette {
   static const Color textColor2 = Color(0XFF9BB3C0);
   static const Color facebookColor = Color(0xFF3B5999);
   static const Color googleColor = Color(0xFFDE4B39);
-  static const Color backgroundColor = Color.fromARGB(255, 160, 154, 152);
+  static const Color backgroundColor = Color.fromARGB(255, 129, 195, 162);
   static const Color backgroundColorSecondary =
       Color.fromARGB(255, 62, 143, 214);
   static const kSecondaryColor = Color.fromARGB(255, 242, 242, 242);
@@ -43,6 +43,7 @@ class PageConst {
   static const String RegisterPage = "signUpScreen";
   static const String RoutesPage = "routesScreen";
   static const String Main = "MainCattleScreen";
+  static const String ListAnimals = "ListAnimalsScreen";
 }
 
 class FirebaseConst {

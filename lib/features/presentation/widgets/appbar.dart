@@ -11,9 +11,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar(
       {Key? key,
       required this.title,
-      this.backgroundColor = Palette.kSecondaryColor,
+      this.backgroundColor = Palette.backgroundColor,
       this.titleTextStyle =
-          const TextStyle(fontSize: 20, color: Palette.kTextColor),
+          const TextStyle(fontSize: 20, color: Palette.kSecondaryColor),
       this.onLogoutPressed,
       this.showBackButton = false})
       : super(key: key);
@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: showBackButton
           ? IconButton(
               icon: const Icon(Icons.arrow_back),
-              color: Palette.kTextColor,
+              color: Palette.kSecondaryColor,
               onPressed: () {
                 Navigator.of(context)
                     .pop();
@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (onLogoutPressed != null)
           IconButton(
-            color: Palette.kTextColor,
+            color: Palette.kSecondaryColor,
             icon: const Icon(Icons.logout),
             onPressed: onLogoutPressed,
           ),

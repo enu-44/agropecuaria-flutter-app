@@ -1,6 +1,7 @@
 import 'package:agropecuariosapp/consts.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/components/signIn_body.dart';
 import 'package:agropecuariosapp/size_config.dart';
@@ -32,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
           return BlocBuilder<AuthCubit, AuthState>(
             builder: (context, authState) {
               if (authState is Authenticated) {
-                return MainScreen();
+                return HomeScreen();
               } else {
                 return SignInBody();
               }

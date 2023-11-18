@@ -273,6 +273,6 @@ class _SignUpFormState extends State<SignUpForm> {
       agree = false;
       _isSigningUp = false;
     });
-    // Navigator.pushNamedAndRemoveUntil(context, PageConst.HomePage, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, PageConst.HomePage, (route) => false);
   }
 }

@@ -1,8 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:io';
-import 'package:agropecuariosapp/features/core/utils/auth.utils.dart';
-import 'package:agropecuariosapp/features/domain/entities/auth/account.entity.dart';
 import 'package:agropecuariosapp/features/domain/entities/auth/request/create_account.entity.dart';
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/signIn.usecase.dart';
 import 'package:agropecuariosapp/features/domain/usecases/user/commands/signup.usecase.dart';
@@ -11,7 +9,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:meta/meta.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'credentials_state.dart';
 

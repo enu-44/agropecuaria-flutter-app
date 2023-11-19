@@ -9,11 +9,10 @@ class CreateAnimalRequestEntity {
       required this.sexo,
       required this.race,
       required this.color,
-      required this.createdDate,
       this.earringNumber,
       this.lote,
       this.characteristics,
-      this.photo});
+      this.photoPath});
 
   final int accountId;
   final int animalTypeId;
@@ -22,9 +21,8 @@ class CreateAnimalRequestEntity {
   final String sexo;
   final String race;
   final String color;
-  final DateTime createdDate;
   final String? earringNumber;
   final String? lote;
   final String? characteristics;
-  final Uint8List? photo;
+  final String? photoPath;
 }

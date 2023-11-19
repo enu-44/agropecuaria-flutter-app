@@ -13,7 +13,7 @@ class UpdateAnimalRequestEntity {
       this.earringNumber,
       this.lote,
       this.characteristics,
-      this.photo});
+      this.photoPath});
   final int id;
   final int accountId;
   final int animalTypeId;
@@ -25,5 +25,5 @@ class UpdateAnimalRequestEntity {
   final String? earringNumber;
   final String? lote;
   final String? characteristics;
-  final Uint8List? photo;
+  final String? photoPath;
 }

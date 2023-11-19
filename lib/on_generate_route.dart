@@ -2,9 +2,7 @@
 
 import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
 import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
-import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/animal_body_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/main_animal_screen.dart';
-import 'package:agropecuariosapp/features/presentation/pages/main/main_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signIn/signin.screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/signUp/signUp_screen.dart';
 import 'package:agropecuariosapp/features/presentation/pages/splash/splash.dart';

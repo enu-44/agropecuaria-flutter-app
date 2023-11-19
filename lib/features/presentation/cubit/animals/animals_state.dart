@@ -15,7 +15,6 @@ class AnimalLoading extends AnimalsState {
   List<Object> get props => [];
 }
 
-
 class AnimalSuccess extends AnimalsState {
   @override
   List<Object> get props => [];
@@ -24,15 +23,6 @@ class AnimalSuccess extends AnimalsState {
 class AnimalFailure extends AnimalsState {
   @override
   List<Object> get props => [];
-}
-
-class AnimalTypeListLoaded extends AnimalsState {
-  final List<AnimalTypeEntity> animalTypes;
-
-  const AnimalTypeListLoaded(this.animalTypes);
-
-  @override
-  List<Object> get props => [animalTypes];
 }
 
 class AnimalListLoaded extends AnimalsState {

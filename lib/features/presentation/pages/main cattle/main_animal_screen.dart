@@ -2,18 +2,16 @@ import 'package:agropecuariosapp/consts.dart';
 import 'package:agropecuariosapp/features/domain/entities/animal/animal.entity.dart';
 import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/type/animal_type_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/card_animal.dart';
 import 'package:agropecuariosapp/features/presentation/pages/main%20cattle/components/animal_body_screen.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-
-
 class MainAnimalScreen extends StatefulWidget {
   final AnimalTypeEntity data;
-  const MainAnimalScreen({super.key,required this.data});
+  const MainAnimalScreen({super.key, required this.data});
 
   @override
   State<MainAnimalScreen> createState() => _MainAnimalScreenState();
@@ -29,42 +27,41 @@ class _MainAnimalScreenState extends State<MainAnimalScreen> {
   Future<void> _loadAnimals() async {
     final cubit = context.read<AnimalsCubit>();
     await cubit.listAnimalsByType(widget.data.id);
+    await context.read<AnimalTypeCubit>().listTypeAnimals();
   }
+
   Widget buildLoadedState(List<AnimalEntity> animals) {
     return Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8.0),
-            color: Colors.grey[200],
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Buscar...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
+      children: [
+        Container(
+          padding: const EdgeInsets.all(8.0),
+          color: Colors.grey[200],
+          child: TextField(
+            onChanged: (String value) => context
+                .read<AnimalsCubit>()
+                .searchAnimals(value, widget.data.id),
+            decoration: InputDecoration(
+              hintText: 'Buscar...',
+              prefixIcon: const Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: animals.length,
-              itemBuilder: (context, index) {
-                return AnimalCard(
-                  name: animals[index].name,
-                  code: animals[index].code,
-                  sex: animals[index].sexo,
-                  admissionDate: animals[index].createdDate,
-                  color: animals[index].color,
-                  breed: animals[index].race,
-                  imageUrl: animals[index].bytesPhoto,
-                  animalTypeId: animals[index].animalTypeId,
-                );
-              },
-            ),
+        ),
+        Container(
+          margin: EdgeInsets.only(left: 10.0),
+          alignment: Alignment.centerLeft,
+          child: Text("Mostrando ${animals.length} resultados"),
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: animals.length,
+            itemBuilder: (context, index) => AnimalCard(animals[index]),
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 
   Widget buildFailureState() {
@@ -78,10 +75,10 @@ class _MainAnimalScreenState extends State<MainAnimalScreen> {
       child: CircularProgressIndicator(),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-
-     return Scaffold(
+    return Scaffold(
       appBar: CustomAppBar(
         title: widget.data.name,
         showBackButton: true,
@@ -101,13 +98,18 @@ class _MainAnimalScreenState extends State<MainAnimalScreen> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AnimalBodyScreen(title: 'Registrar Nuevo', animalTypeId: widget.data.id)),
-          ).then((value) => value is bool ? _loadAnimals() : null);
+            MaterialPageRoute(
+                builder: (context) => AnimalBodyScreen(
+                    title: 'Registrar Nuevo', animalTypeId: widget.data.id)),
+          ).then((value) {
+            if (value is bool) {
+              _loadAnimals();
+            }
+          });
         },
         backgroundColor: Palette.backgroundColor,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
-
   }
 }

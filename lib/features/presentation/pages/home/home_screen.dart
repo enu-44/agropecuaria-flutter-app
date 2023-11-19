@@ -1,6 +1,6 @@
 import 'package:agropecuariosapp/consts.dart';
 import 'package:agropecuariosapp/features/domain/entities/animal_type/animal_type.entity.dart';
-import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/type/animal_type_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/home/components/card_item.dart';
 import 'package:agropecuariosapp/features/presentation/widgets/appbar.dart';
@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -23,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _loadAnimalTypes() async {
-    final cubit = context.read<AnimalsCubit>();
+    final cubit = context.read<AnimalTypeCubit>();
     await cubit.listTypeAnimals();
   }
 
@@ -77,11 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AnimalsCubit, AnimalsState>(
+    return BlocBuilder<AnimalTypeCubit, AnimalTypeState>(
       builder: (context, state) {
         if (state is AnimalTypeListLoaded) {
           return buildLoadedState(state.animalTypes);
-        } else if (state is AnimalFailure) {
+        } else if (state is AnimalTypeFailure) {
           return buildFailureState();
         } else {
           return buildLoadingState();
@@ -91,12 +90,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> _signOut() async {
-    setState(() {
-    });
-    BlocProvider.of<AuthCubit>(context)
-        .loggedOut()
-        .then((value) => {
-          Navigator.pushNamedAndRemoveUntil(context, PageConst.Splash, (route) => false)
+    setState(() {});
+    BlocProvider.of<AuthCubit>(context).loggedOut().then((value) => {
+          Navigator.pushNamedAndRemoveUntil(
+              context, PageConst.Splash, (route) => false)
         });
   }
 }

@@ -20,7 +20,7 @@ class AnimalEntityHive extends HiveObject {
       this.earringNumber,
       this.lote,
       this.characteristics,
-      this.photo}) {
+      this.photoPath}) {
     createdDate = DateTime.now();
   }
 
@@ -58,5 +58,5 @@ class AnimalEntityHive extends HiveObject {
   String? characteristics;
 
   @HiveField(11)
-  Uint8List? photo;
+  String? photoPath;
 }

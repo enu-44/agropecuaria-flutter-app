@@ -14,7 +14,7 @@ class AnimalEntity {
       this.earringNumber,
       this.lote,
       this.characteristics,
-      this.bytesPhoto});
+      this.photoPath});
   final int id;
   final int accountId;
   final int animalTypeId;
@@ -27,5 +27,5 @@ class AnimalEntity {
   final String? earringNumber;
   final String? lote;
   final String? characteristics;
-  final Uint8List? bytesPhoto;
+  final String? photoPath;
 }

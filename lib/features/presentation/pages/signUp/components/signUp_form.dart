@@ -65,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
           InputCredential(
               controller: _usernameController,
               hintText: "Ingresar Nombre Completo",
-              labelText: "Fullname",
+              labelText: "Nombre Completo",
               icons: Icons.person,
               inputType: TextInputType.name),
           SizedBox(height: getProportionateScreenHeight(20)),
@@ -78,8 +78,8 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           InputCredential(
             controller: _passwordController,
-            hintText: "Ingresar Password",
-            labelText: "Password",
+            hintText: "Ingresar Clave",
+            labelText: "Clave",
             inputType: TextInputType.visiblePassword,
             isPasswordField: true,
           ),
@@ -87,8 +87,8 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           InputCredential(
             controller: _confirmepasswordController,
-            hintText: "Confirmar Password",
-            labelText: "Password",
+            hintText: "Confirmar Clave",
+            labelText: "Confirmar clave",
             isPasswordField: true,
             inputType: TextInputType.visiblePassword,
           ),
@@ -135,7 +135,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   ],
                 )
               : DefaultButton(
-                  text: "Continue",
+                  text: "Continuar",
                   state: agree,
                   press: () {
                     _signUpUser();
@@ -273,6 +273,7 @@ class _SignUpFormState extends State<SignUpForm> {
       agree = false;
       _isSigningUp = false;
     });
-    Navigator.pushNamedAndRemoveUntil(context, PageConst.HomePage, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(
+        context, PageConst.HomePage, (route) => false);
   }
 }

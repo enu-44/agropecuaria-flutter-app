@@ -16,7 +16,7 @@ extension CreateAnimalRequestEntityMapper on CreateAnimalRequestEntity {
         characteristics: characteristics,
         earringNumber: earringNumber,
         lote: lote,
-        photo: photo);
+        photoPath: photoPath);
   }
 }
 
@@ -33,7 +33,7 @@ extension UpdateAnimalRequestEntityMapper on UpdateAnimalRequestEntity {
         characteristics: characteristics,
         earringNumber: earringNumber,
         lote: lote,
-        photo: photo);
+        photoPath: photoPath);
   }
 }
 
@@ -51,7 +51,7 @@ extension AnimalEntityHiveMapper on AnimalEntityHive {
         characteristics: characteristics,
         earringNumber: earringNumber,
         lote: lote,
-        bytesPhoto: photo,
+        photoPath: photoPath,
         createdDate: createdDate);
   }
 }

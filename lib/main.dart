@@ -1,6 +1,7 @@
 import 'package:agropecuariosapp/features/data/datasources/hive/config/datasource_hive_instance.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/animals/animals_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/animals/form/animals_form_cubit.dart';
+import 'package:agropecuariosapp/features/presentation/cubit/animals/type/animal_type_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/auth/auth_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/cubit/user/credentials/credentials_cubit.dart';
 import 'package:agropecuariosapp/features/presentation/pages/home/home_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => di.sl<CredentialsCubit>()),
           BlocProvider(create: (_) => di.sl<AnimalsCubit>()),
           BlocProvider(create: (_) => di.sl<AnimalsFormCubit>()),
+          BlocProvider(create: (_) => di.sl<AnimalTypeCubit>()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

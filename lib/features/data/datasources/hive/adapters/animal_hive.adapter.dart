@@ -27,7 +27,7 @@ class AnimalHiveAdapter extends TypeAdapter<AnimalEntityHive> {
         earringNumber: fields[8] as String?,
         lote: fields[9] as String?,
         characteristics: fields[10] as String?,
-        photo: fields[11] as Uint8List?)
+        photoPath: fields[11] as String?)
       ..createdDate = DateTime.fromMillisecondsSinceEpoch(fields[7] as int);
   }
 
@@ -58,7 +58,7 @@ class AnimalHiveAdapter extends TypeAdapter<AnimalEntityHive> {
       ..writeByte(10)
       ..write(obj.characteristics)
       ..writeByte(11)
-      ..write(obj.photo);
+      ..write(obj.photoPath);
   }
 
   @override

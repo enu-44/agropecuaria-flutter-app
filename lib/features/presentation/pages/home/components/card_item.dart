@@ -46,7 +46,7 @@ class CustomCard extends StatelessWidget {
               onTap: onTap,
               child: Container(
                 width: double.infinity,
-                height: 120,
+                height: 107,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,

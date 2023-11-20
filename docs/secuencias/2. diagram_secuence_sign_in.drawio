@@ -1,0 +1,58 @@
+<mxfile host="65bd71144e">
+    <diagram id="QMX66dUMR_UlnvlcAEaJ" name="Page-1">
+        <mxGraphModel dx="749" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="shape=actor;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="160" y="110" width="40" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Iniciar Sesion" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;shadow=0;strokeColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="170" width="100" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#009900;shadow=0;strokeColor=default;" parent="3" vertex="1">
+                    <mxGeometry x="45" y="90" width="10" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="USUARIO" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;shadow=0;strokeColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="180" width="100" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;shadow=0;strokeColor=default;fillColor=#006600;" parent="5" vertex="1">
+                    <mxGeometry x="45" y="90" width="10" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;" parent="1" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="200" y="300" as="sourcePoint"/>
+                        <mxPoint x="470" y="300" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="8" value="" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;entryX=0.125;entryY=-0.017;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="3" target="9" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="210" y="310" as="sourcePoint"/>
+                        <mxPoint x="250" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="se valida credenciales correctamente" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="209" y="322" width="220" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Se carga el formulario de iniciar sesion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="199" y="260" width="230" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="Menu Principal - Tipos de Ganado" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;shadow=0;strokeColor=default;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="170" width="100" height="270" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#009900;shadow=0;strokeColor=default;" parent="11" vertex="1">
+                    <mxGeometry x="45" y="90" width="10" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="endArrow=block;startArrow=none;endFill=0;startFill=0;endSize=8;html=1;verticalAlign=bottom;dashed=1;labelBackgroundColor=none;" parent="1" edge="1">
+                    <mxGeometry width="160" relative="1" as="geometry">
+                        <mxPoint x="217" y="390" as="sourcePoint"/>
+                        <mxPoint x="667" y="390" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="El usuario es redireccionado&lt;br&gt;&amp;nbsp;al menu de la aplicacion" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="255" y="352" width="170" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

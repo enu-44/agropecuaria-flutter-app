@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _signOut() async {
     setState(() {});
-    BlocProvider.of<AuthCubit>(context).loggedOut().then(
-        (value) => {Navigator.pushReplacementNamed(context, PageConst.Splash)});
+    BlocProvider.of<AuthCubit>(context).loggedOut().then((value) =>
+        {Navigator.pushReplacementNamed(context, PageConst.LoginPage)});
   }
 }

@@ -42,62 +42,68 @@ class AnimalCard extends StatelessWidget {
               width: 5,
             ),
             Expanded(
-              child:   Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,                    children: [
-                Row(
-                  children: [
-                    const Text('Nombre:',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Flexible(child: Text(data.name,overflow: TextOverflow.ellipsis)),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Código:',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(data.code),
-                  ],
-                ),
-
-                Row(
-                  children: [
-                    const Text('Color:',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Flexible(child: Text(data.color, overflow: TextOverflow.ellipsis)),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Sexo:',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(data.sexo),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Raza:',
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text('Nombre:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Flexible(
+                          child:
+                              Text(data.name, overflow: TextOverflow.ellipsis)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('Código:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(data.code),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('Color:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Flexible(
+                          child: Text(data.color,
+                              overflow: TextOverflow.ellipsis)),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('Sexo:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(data.sexo),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Raza:',
                         style: TextStyle(fontWeight: FontWeight.bold),
-
-                    ),
-                    Flexible(
-                      child: Text(data.race, 
-                        overflow: TextOverflow.ellipsis,),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const Text('Fecha:',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(
-                        '${data.createdDate.day}/${data.createdDate.month}/${data.createdDate.year} - ${data.createdDate.hour}:${data.createdDate.minute}'),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10.0,
-                )
-              ],
+                      ),
+                      Flexible(
+                        child: Text(
+                          data.race,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('Fecha:',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text(
+                          '${data.createdDate.day}/${data.createdDate.month}/${data.createdDate.year} - ${data.createdDate.hour}:${data.createdDate.minute}'),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  )
+                ],
               ),
             ),
             PopupMenuButton<String>(
@@ -115,9 +121,7 @@ class AnimalCard extends StatelessWidget {
                   ).then((value) async {
                     if (value is bool) {
                       final cubit = context.read<AnimalsCubit>();
-                      await cubit.delete(data.id);
                       await cubit.listAnimalsByType(data.animalTypeId);
-                      // ignore: use_build_context_synchronously
                       await context.read<AnimalTypeCubit>().listTypeAnimals();
                     }
                   });
